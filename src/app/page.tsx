@@ -1,71 +1,120 @@
 import Link from "next/link";
+import { HeroStage } from "./_components/hero-stage";
+import { HeroStats } from "./_components/hero-stats";
 import { HeroVideo } from "./_components/hero-video";
+import { SiteNav } from "./_components/site-nav";
+
+// Placeholder claims: confirm each certification is actually held before launch.
+const CERTIFICATIONS = [
+  { name: "ISO/IEC 27001", description: "Certified information security management." },
+  { name: "SOC 2 Type II", description: "Audited controls for security and availability." },
+  { name: "HIPAA compliant", description: "Safeguards for protected health information." },
+  { name: "PCI DSS", description: "Secure handling of payment card data." },
+] as const;
+
+// Placeholder figures: replace with verified numbers before launch.
+const HERO_STATS = [
+  { icon: "★", value: "4.9/5", label: "Client rating", position: "right-10 top-[22%] xl:right-14" },
+  { icon: "↻", value: "98%", label: "Retention rate", position: "bottom-[14%] right-[24%]" },
+] as const;
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 sm:px-8 lg:px-10">
-        <Link
-          href="/"
-          className="rounded text-lg font-semibold tracking-[-0.04em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+      <SiteNav />
+      <section
+        aria-labelledby="welcome-heading"
+        className="flex min-h-[calc(100svh-var(--hero-peek))] w-full flex-col pt-[calc(var(--nav-h)+1px)]"
+      >
+        <HeroStage className="relative isolate flex w-full flex-1 flex-col overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top_right,#1b2a5c_0%,var(--background)_65%)]"
         >
-          skybridge
-        </Link>
-        <nav aria-label="Main navigation">
-          <Link
-            href="#about"
-            className="rounded text-sm font-medium text-(--hero-muted) hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
-          >
-            About
-          </Link>
-        </nav>
-      </header>
+          <HeroVideo />
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-linear-to-t from-background via-black/55 to-black/40 md:bg-linear-to-r md:from-[#060b19] md:via-[#060b19]/80 md:to-transparent"
+        />
 
-      <main className="w-full flex-1 pb-16 sm:pb-20">
-        <section
-          aria-labelledby="welcome-heading"
-          className="relative mx-auto flex w-full max-w-7xl flex-col gap-8 px-5 pt-8 sm:gap-10 sm:px-8 sm:pt-12 md:gap-12 lg:block lg:px-10 lg:pt-12"
-        >
-          <div className="pointer-events-none order-1 max-w-2xl lg:absolute lg:inset-14 lg:z-20 lg:flex lg:items-center">
-            <div className="max-w-xl">
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-(--hero-label) sm:text-sm">
-                A fresh start
-              </p>
-              <h1
-                id="welcome-heading"
-                className="text-5xl font-medium leading-[0.98] tracking-[-0.065em] sm:text-6xl lg:text-7xl xl:text-8xl"
-              >
-                Welcome to
-                <br />
-                <span className="text-(--hero-label)">Skybridge.</span>
-              </h1>
-              <p className="mt-5 max-w-lg text-base leading-7 text-(--hero-muted) sm:mt-6 sm:text-lg sm:leading-8">
-                A simple starting point for what comes next. Make yourself at
-                home and let your ideas take shape.
-              </p>
+        <div className="relative mx-auto flex w-full max-w-7xl flex-1 items-center px-5 pb-[2svh] pt-[2svh] sm:px-8 lg:px-10 short:pt-[1svh]">
+          <div className="flex w-full max-w-2xl flex-col items-start text-left [translate:calc(var(--px,0)*6px)_calc(var(--py,0)*4px)] lg:w-[45%] lg:max-w-none">
+            <p className="mb-[2.5svh] flex items-center gap-3 short:hidden text-xs font-semibold uppercase tracking-[0.2em] text-(--hero-label) sm:text-sm">
+              <span aria-hidden="true" className="size-2 rounded-full bg-amber-400 shadow-[0_0_0_4px_rgb(251_191_36/0.2)]" />
+              Your ambition. Our people.
+            </p>
+            <h1
+              id="welcome-heading"
+              className="text-[clamp(2rem,min(9vw,9svh),5rem)] font-semibold lg:text-[clamp(2.5rem,min(5vw,8.5svh),4.25rem)] leading-[0.98] tracking-[-0.055em] [text-shadow:0_2px_24px_rgb(0_0_0/0.45)]"
+            >
+              People-powered.
+              <br />
+              <span className="text-(--hero-label)">
+                Business-
+                <wbr />
+                <span className="relative inline-block">
+                  forward.
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-amber-400 sm:h-1.5"
+                  />
+                </span>
+              </span>
+            </h1>
+            <p className="mt-[3svh] text-lg font-medium text-foreground sm:text-xl short:hidden">
+              Intelligence in every connection.
+            </p>
+            <p className="mt-2 max-w-xl text-base leading-7 text-(--hero-muted) sm:text-lg sm:leading-8 compact:hidden">
+              Behind every great business is a great team. We bring the people,
+              expertise, and care to help yours go further.
+            </p>
+            <div className="mt-[3.5svh] flex flex-wrap items-center gap-x-6 gap-y-2">
               <Link
                 href="#about"
-                className="pointer-events-auto mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background hover:bg-(--hero-label) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background hover:bg-(--hero-label) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
               >
-                Get started
+                Build your team
+                <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none">
+                  <path d="M3 8h10m-4-4 4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+              <Link
+                href="#about"
+                className="inline-flex min-h-12 items-center rounded-full text-sm font-semibold text-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+              >
+                Meet Skybridge
               </Link>
             </div>
           </div>
 
-          <div className="relative order-2 isolate">
-            <HeroVideo />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 hidden aspect-video bg-linear-to-r from-black/80 via-black/50 to-transparent lg:block"
-            />
-          </div>
-        </section>
+          <HeroStats stats={HERO_STATS} />
+        </div>
+        </HeroStage>
 
+        
+
+        <div className="flex h-14 w-full items-center justify-center bg-background compact:h-10">
+          <Link
+            href="#about"
+            className="group flex items-center gap-3 rounded-full py-1 pl-1 pr-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--hero-subtle) hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+          >
+            <span className="grid size-8 place-items-center overflow-hidden rounded-full border border-(--hero-border) text-(--hero-label)             group-hover:border-(--hero-label)/60 compact:size-7 motion-reduce:border-(--hero-label)/70 motion-reduce:bg-(--hero-label)/10">
+                          <svg aria-hidden="true" viewBox="0 0 16 16" className="block size-4 animate-nudge motion-reduce:animate-none">
+                <path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            Scroll to explore
+          </Link>
+        </div>
+      </section>
+
+      <main className="w-full flex-1 pb-16 sm:pb-20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
           <section
             id="about"
             aria-labelledby="about-heading"
-            className="mt-16 grid gap-5 border-t border-(--hero-border) pt-8 sm:mt-20 sm:grid-cols-[1fr_2fr] sm:gap-10 sm:pt-10"
+            className="grid gap-5 pt-5 sm:grid-cols-[1fr_2fr] sm:gap-10 sm:pt-6"
           >
             <h2
               id="about-heading"
@@ -88,3 +137,9 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
+
+

@@ -1,71 +1,75 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
+const VIDEO_PROPS = {
+  src: "/hero-video.mp4",
+  autoPlay: true,
+  muted: true,
+  loop: true,
+  playsInline: true,
+  disablePictureInPicture: true,
+  disableRemotePlayback: true,
+  preload: "auto",
+  "aria-hidden": true,
+  tabIndex: -1,
+} as const;
+
+/**
+ * The full 16:9 frame is shown uncropped (sized to fit the hero, anchored right), with a
+ * blurred copy of the same video filling the remaining space behind the text.
+ * Both layers react to the --px / --py pointer variables from HeroStage.
+ */
 export function HeroVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [message, setMessage] = useState("");
+  const backdropRef = useRef<HTMLVideoElement>(null);
+  const frameRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const videos = [backdropRef.current, frameRef.current].filter(
+      (video): video is HTMLVideoElement => video !== null,
+    );
+
+    // React doesn't reliably reflect `muted` as an attribute, so enforce it on the element.
+    for (const video of videos) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+    }
 
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let active = true;
 
     const syncPreference = () => {
-      if (preference.matches) {
-        video.pause();
-      } else {
-        void video
-          .play()
-          .then(() => {
-            if (!active) video.pause();
-          })
-          .catch((error: unknown) => {
-            if (!active || (error instanceof DOMException && error.name === "AbortError")) return;
-            setMessage("Video playback is unavailable. Use the playback controls to try again.");
+      for (const video of videos) {
+        if (preference.matches) {
+          video.pause();
+        } else {
+          void video.play().catch(() => {
+            // Autoplay blocked: the gradient backdrop behind the video remains visible.
           });
-      };
-    }
+        }
+      }
+    };
 
     syncPreference();
     preference.addEventListener("change", syncPreference);
     return () => {
-      active = false;
       preference.removeEventListener("change", syncPreference);
-      video.pause();
+      for (const video of videos) video.pause();
     };
   }, []);
 
   return (
-    <>
+    <div className="absolute inset-0 overflow-hidden @container-size">
       <video
-        ref={videoRef}
-        id="hero-video"
-        src="/hero-video.mp4"
-        width={1920}
-        height={1080}
-        muted
-        loop
-        playsInline
-        controls
-        preload="metadata"
-        aria-label="Skybridge welcome video"
-        className="block aspect-video w-full bg-background object-contain"
-        onPlay={() => setMessage("")}
-        onError={() => setMessage("The video could not load. Use the playback controls to try again.")}
-      >
-        Your browser does not support the video element.
-      </video>
-      {message && (
-        <p
-          role="status"
-          className="mt-3 rounded-lg border border-(--hero-border) px-4 py-3 text-sm text-(--hero-muted)"
-        >
-          {message}
-        </p>
-      )}
-    </>
+        ref={backdropRef}
+        {...VIDEO_PROPS}
+        className="pointer-events-none absolute inset-0 h-full w-full scale-125 object-cover opacity-45 blur-2xl [translate:calc(var(--px,0)*-24px)_calc(var(--py,0)*-16px)]"
+      />
+      <video
+        ref={frameRef}
+        {...VIDEO_PROPS}
+        className="pointer-events-none absolute right-0 top-3/5 aspect-video w-[min(100cqw,calc(120cqh*16/8))] -translate-y-1/2 object-cover will-change-transform origin-right mask-[linear-gradient(to_bottom,transparent,#000_12%,#000_88%,transparent)] md:mask-[linear-gradient(to_right,transparent,#000_14%)] transform-[perspective(1600px)_rotateY(calc(var(--px,0)*2deg))_rotateX(calc(var(--py,0)*-1.5deg))_scale(0.965)]"
+      />
+    </div>
   );
 }
