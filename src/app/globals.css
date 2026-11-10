@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f7f3;
-  --foreground: #20251f;
+  --background: #080d21;
+  --foreground: #f1f5ff;
+  --hero-border: #252e4a;
+  --hero-label: #8de5fa;
+  --hero-muted: #bfc9df;
+  --hero-subtle: #95a3c2;
 }
 
 @theme inline {
@@ -16,4 +20,5 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
+  overflow-x: clip;
 }
