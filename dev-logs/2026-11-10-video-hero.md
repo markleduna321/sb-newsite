@@ -330,3 +330,29 @@
 - **Resolution:** Restored the component; `page.tsx` usage (`<SiteNav />`, `--nav-h`) unchanged.
 - **QA Checklist Result:** ✅ VS Code Problems: none · lint · tsc · build pass; built CSS contains `container-type:size`, both mask gradients and `perspective(1600px)`.
 - **Next Steps:** Replace placeholder stats/certifications/nav anchors; build sections below the hero — awaiting your approval.
+### Phase 23: Royal Blue restyle
+
+- **Timestamp:** 2026-11-11 14:07
+- **Mode:** Edit access yes · Terminal yes
+- **Persona(s) Active:** 🎨 UI-UX
+- **Files Modified/Created:**
+  - `src/app/page.tsx` — eyebrow text and "Business-forward." use `bg-linear-to-r from-[#3B82F6] via-[#60A5FA] to-[#2563EB] bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(37,99,235,0.4)]` (H1 `text-shadow` disabled on the gradient span so it doesn't paint over the clipped text; underline span made inline so it stays inside the clip); primary CTA `bg-white text-[#0A1536]` + gold hover glow; secondary CTA royal-blue glass ghost button; new single-row trust bar under the CTAs (blue shield icons, `ISO/IEC 27001 • SOC 2 Type II • HIPAA • PCI DSS`, hidden at `short`); `CERTIFICATIONS` simplified to names (still placeholders); stat positions: 4.9/5 card 40px up / 30px left, 98% card 30px left.
+  - `src/app/_components/hero-video.tsx` — colour grade: royal-blue radial `mix-blend-color` layer over the globe area + `bg-blue-700/15 mix-blend-overlay`.
+  - `src/app/_components/hero-stats.tsx` — cards `bg-[#0F2356]/65 border-blue-400/25 backdrop-blur-md`; icons `bg-amber-400/15 text-amber-400 border-amber-400/30`.
+  - `src/app/_components/site-nav.tsx` — dark royal-navy glass header (`bg-[#060D24]/80 backdrop-blur-md border-blue-500/15`, scrolled: `border-blue-500/25` + shadow, same 500ms transition); pill `bg-blue-950/50 border-blue-400/20`, white links; white "Contact us" with gold dot; dark mobile menu; white focus rings.
+- **Issues Encountered:** None from this change. Observed pre-existing band between the header and the top of the framed video (blurred backdrop only) — from the current `hero-video.tsx` frame positioning, unchanged.
+- **Resolution:** —
+- **QA Checklist Result:** ✅ lint · tsc · build pass. Playwright 320×568 → 1920×1080 + 740×360 / 844×390: cue on screen, fold peek > 0, no horizontal overflow, trust bar inside hero, stat cards don't overlap the text column or leave the stage; gradient span computed `background-clip: text` + drop-shadow filter. Colour grade verified by toggling the blend layers (teal → royal blue).
+- **Next Steps:** Decide on the backdrop band above the video; replace placeholder stats/certifications/nav anchors — awaiting your approval.
+### Phase 1: Large-screen hero balance
+
+- **Timestamp:** 2026-11-11 14:14:32 +08:00
+- **Mode:** Edit access yes · Terminal no
+- **Persona(s) Active:** 📝 Dev Logger
+- **Files Modified/Created:**
+  - `src/app/page.tsx` — Adjusted copy sizing for large screens only.
+  - `src/app/_components/hero-video.tsx` — Centered the hero frame and capped its large-screen size.
+- **Issues Encountered:** Browser visuals remain unverified.
+- **Resolution:** —
+- **QA Checklist Result:** ✅ `tsc`, lint, and build passed. Browser visuals were unverified; no test script is defined.
+- **Next Steps:** Continue with the next approved video-hero scope — awaiting your approval.

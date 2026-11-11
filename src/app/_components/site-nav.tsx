@@ -14,7 +14,7 @@ const NAV_LINKS = [
 const SOLID_AFTER_PX = 24;
 
 const focusRing =
-  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-900";
+  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,29 +45,29 @@ export function SiteNav() {
 
   const solid = scrolled || open;
 
-  // Always fixed in place. At the top it is a solid white band above the hero (the hero
-  // reserves --nav-h for it, so the video is never covered); once scrolled it turns frosted.
+  // Always fixed in place. At the top it is a dark royal-navy glass band above the hero (the hero
+  // reserves --nav-h for it, so the video is never covered); once scrolled it gains depth.
   return (
     <header
       data-solid={solid}
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ease-out motion-reduce:transition-none ${
         solid
-          ? "border-slate-200 bg-white/85 shadow-[0_8px_30px_rgb(15_23_42/0.18)] backdrop-blur-lg"
-          : "border-slate-200 bg-white shadow-none backdrop-blur-none"
+          ? "border-blue-500/25 bg-[#060D24]/80 shadow-[0_8px_30px_rgb(0_0_0/0.45)] backdrop-blur-md"
+          : "border-blue-500/15 bg-[#060D24]/80 shadow-none backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex h-(--nav-h) w-full max-w-7xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
-        <Link href="/" className={`rounded text-lg font-semibold tracking-[-0.04em] text-slate-900 ${focusRing}`}>
+        <Link href="/" className={`rounded text-lg font-semibold tracking-[-0.04em] text-white ${focusRing}`}>
           skybridge
         </Link>
 
         <nav aria-label="Main navigation" className="hidden md:block">
-          <ul className="flex items-center gap-7 rounded-full border border-slate-200 bg-slate-50/80 px-6 py-2 backdrop-blur-md">
+          <ul className="flex items-center gap-7 rounded-full border border-blue-400/20 bg-blue-950/50 px-6 py-2 backdrop-blur-md">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`rounded text-sm font-medium text-slate-600 hover:text-slate-900 ${focusRing}`}
+                  className={`rounded text-sm font-medium text-white/85 hover:text-white ${focusRing}`}
                 >
                   {link.label}
                 </Link>
@@ -79,8 +79,9 @@ export function SiteNav() {
         <div className="flex items-center gap-2">
           <Link
             href="#contact"
-            className={`hidden min-h-10 items-center rounded-full bg-slate-900 px-5 text-sm font-semibold text-white hover:bg-blue-700 sm:inline-flex short:min-h-8 ${focusRing}`}
+            className={`hidden min-h-10 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-[#0A1536] transition-shadow hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] motion-reduce:transition-none sm:inline-flex short:min-h-8 ${focusRing}`}
           >
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-amber-400 shadow-[0_0_0_3px_rgb(251_191_36/0.25)]" />
             Contact us
           </Link>
           <button
@@ -89,7 +90,7 @@ export function SiteNav() {
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="grid size-10 place-items-center rounded-lg text-slate-900 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 md:hidden"
+            className="grid size-10 place-items-center rounded-lg text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:hidden"
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="size-6">
               {open ? (
@@ -106,7 +107,7 @@ export function SiteNav() {
         id="mobile-nav"
         aria-label="Mobile navigation"
         hidden={!open}
-        className="border-t border-slate-200 md:hidden"
+        className="border-t border-blue-500/15 md:hidden"
       >
         <ul className="mx-auto flex w-full max-w-7xl flex-col px-5 py-3 sm:px-8">
           {[...NAV_LINKS, { href: "#contact", label: "Contact us" }].map((link) => (
@@ -114,7 +115,7 @@ export function SiteNav() {
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex min-h-12 items-center rounded-lg px-2 text-base font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+                className="flex min-h-12 items-center rounded-lg px-2 text-base font-medium text-white/85 hover:bg-blue-500/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 {link.label}
               </Link>

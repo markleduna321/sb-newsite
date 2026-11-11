@@ -115,10 +115,10 @@ export function HeroStats({ stats }: { stats: readonly HeroStat[] }) {
             className="will-change-transform"
           >
             <div
-              className="flex animate-float items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-5 py-4 shadow-[0_12px_40px_rgb(0_0_0/0.35)] backdrop-blur-md motion-reduce:animate-none"
+              className="flex animate-float items-center gap-3 rounded-2xl border border-blue-400/25 bg-[#0F2356]/65 px-5 py-4 shadow-[0_12px_40px_rgb(0_0_0/0.35)] backdrop-blur-md motion-reduce:animate-none"
               style={{ animationDelay: `${i * -3}s` }}
             >
-              <span aria-hidden="true" className="grid size-10 place-items-center rounded-xl bg-white/10 text-lg text-amber-400">
+              <span aria-hidden="true" className="grid size-10 place-items-center rounded-xl border border-amber-400/30 bg-amber-400/15 text-lg text-amber-400">
                 {stat.icon}
               </span>
               <span className="flex flex-col">

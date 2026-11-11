@@ -5,17 +5,12 @@ import { HeroVideo } from "./_components/hero-video";
 import { SiteNav } from "./_components/site-nav";
 
 // Placeholder claims: confirm each certification is actually held before launch.
-const CERTIFICATIONS = [
-  { name: "ISO/IEC 27001", description: "Certified information security management." },
-  { name: "SOC 2 Type II", description: "Audited controls for security and availability." },
-  { name: "HIPAA compliant", description: "Safeguards for protected health information." },
-  { name: "PCI DSS", description: "Secure handling of payment card data." },
-] as const;
+const CERTIFICATIONS = ["ISO/IEC 27001", "SOC 2 Type II", "HIPAA", "PCI DSS"] as const;
 
 // Placeholder figures: replace with verified numbers before launch.
 const HERO_STATS = [
-  { icon: "★", value: "4.9/5", label: "Client rating", position: "right-10 top-[22%] xl:right-14" },
-  { icon: "↻", value: "98%", label: "Retention rate", position: "bottom-[14%] right-[24%]" },
+  { icon: "★", value: "4.9/5", label: "Client rating", position: "right-[70px] top-[calc(22%-40px)] xl:right-[86px]" },
+  { icon: "↻", value: "98%", label: "Retention rate", position: "bottom-[14%] right-[calc(24%+30px)]" },
 ] as const;
 
 export default function Home() {
@@ -39,10 +34,12 @@ export default function Home() {
         />
 
         <div className="relative mx-auto flex w-full max-w-7xl flex-1 items-center px-5 pb-[2svh] pt-[2svh] sm:px-8 lg:px-10 short:pt-[1svh]">
-          <div className="flex w-full max-w-2xl flex-col items-start text-left [translate:calc(var(--px,0)*6px)_calc(var(--py,0)*4px)] lg:w-[45%] lg:max-w-none">
-            <p className="mb-[2.5svh] flex items-center gap-3 short:hidden text-xs font-semibold uppercase tracking-[0.2em] text-(--hero-label) sm:text-sm">
+          <div className="flex w-full max-w-2xl flex-col items-start text-left [translate:calc(var(--px,0)*6px)_calc(var(--py,0)*4px)] lg:w-[45%] lg:max-w-none xl:w-[48%] xl:max-w-2xl">
+            <p className="mb-[2.5svh] flex items-center gap-3 short:hidden text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm">
               <span aria-hidden="true" className="size-2 rounded-full bg-amber-400 shadow-[0_0_0_4px_rgb(251_191_36/0.2)]" />
-              Your ambition. Our people.
+              <span className="bg-linear-to-r from-[#3B82F6] via-[#60A5FA] to-[#2563EB] bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(37,99,235,0.4)]">
+                Your ambition. Our people.
+              </span>
             </p>
             <h1
               id="welcome-heading"
@@ -50,10 +47,10 @@ export default function Home() {
             >
               People-powered.
               <br />
-              <span className="text-(--hero-label)">
+              <span className="inline-block bg-linear-to-r from-[#3B82F6] via-[#60A5FA] to-[#2563EB] bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(37,99,235,0.4)] [text-shadow:none]">
                 Business-
                 <wbr />
-                <span className="relative inline-block">
+                <span className="relative">
                   forward.
                   <span
                     aria-hidden="true"
@@ -69,10 +66,10 @@ export default function Home() {
               Behind every great business is a great team. We bring the people,
               expertise, and care to help yours go further.
             </p>
-            <div className="mt-[3.5svh] flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="mt-[3.5svh] flex flex-wrap items-center gap-3">
               <Link
                 href="#about"
-                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background hover:bg-(--hero-label) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0A1536] transition-shadow duration-300 hover:shadow-[0_0_25px_rgba(245,158,11,0.4)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
               >
                 Build your team
                 <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none">
@@ -81,11 +78,32 @@ export default function Home() {
               </Link>
               <Link
                 href="#about"
-                className="inline-flex min-h-12 items-center rounded-full text-sm font-semibold text-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+                className="inline-flex min-h-12 items-center rounded-full border border-blue-400/30 bg-blue-600/15 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-blue-600/25 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-reduce:transition-none"
               >
                 Meet Skybridge
               </Link>
             </div>
+            <ul
+              aria-label="Certifications"
+              className="mt-[3svh] flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs font-medium text-white/65 sm:text-sm short:hidden"
+            >
+              {CERTIFICATIONS.map((cert, i) => (
+                <li key={cert} className="flex items-center gap-2.5">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="text-white/30">
+                      •
+                    </span>
+                  )}
+                  <span className="flex items-center gap-1.5">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 shrink-0 text-blue-500">
+                      <path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.4 7.5 9.5 4.3-1.1 7.5-5 7.5-9.5V6z" fill="currentColor" fillOpacity="0.18" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                      <path d="m8.75 12 2.25 2.25L15.5 9.75" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    {cert}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <HeroStats stats={HERO_STATS} />
@@ -137,7 +155,6 @@ export default function Home() {
     </div>
   );
 }
-
 
 
 

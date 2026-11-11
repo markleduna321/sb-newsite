@@ -68,8 +68,11 @@ export function HeroVideo() {
       <video
         ref={frameRef}
         {...VIDEO_PROPS}
-        className="pointer-events-none absolute right-0 top-3/5 aspect-video w-[min(100cqw,calc(120cqh*16/8))] -translate-y-1/2 object-cover will-change-transform origin-right mask-[linear-gradient(to_bottom,transparent,#000_12%,#000_88%,transparent)] md:mask-[linear-gradient(to_right,transparent,#000_14%)] transform-[perspective(1600px)_rotateY(calc(var(--px,0)*2deg))_rotateX(calc(var(--py,0)*-1.5deg))_scale(0.965)]"
+        className="pointer-events-none absolute right-0 top-3/5 aspect-video w-[min(100cqw,calc(120cqh*16/8))] -translate-y-1/2 object-cover will-change-transform origin-right mask-[linear-gradient(to_bottom,transparent,#000_12%,#000_88%,transparent)] md:mask-[linear-gradient(to_right,transparent,#000_14%)] transform-[perspective(1600px)_rotateY(calc(var(--px,0)*2deg))_rotateX(calc(var(--py,0)*-1.5deg))_scale(0.965)] xl:top-1/2 xl:w-[min(100cqw,calc(92cqh*16/9))]"
       />
+      {/* Colour grade: pulls the video's teal glow toward royal blue without touching layout. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_75%_at_68%_55%,rgb(29_78_216/0.45),rgb(29_78_216/0.2)_60%,transparent_85%)] mix-blend-color" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-blue-700/15 mix-blend-overlay" />
     </div>
   );
 }
