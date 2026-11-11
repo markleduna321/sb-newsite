@@ -356,3 +356,28 @@
 - **Resolution:** —
 - **QA Checklist Result:** ✅ `tsc`, lint, and build passed. Browser visuals were unverified; no test script is defined.
 - **Next Steps:** Continue with the next approved video-hero scope — awaiting your approval.
+### Phase 2: Fullscreen hero balance
+
+- **Timestamp:** 2026-11-11 14:52:21 +08:00
+- **Mode:** Edit access yes · Terminal no
+- **Persona(s) Active:** 🧪 QA · 📝 Dev Logger
+- **Files Modified/Created:**
+  - `src/app/_components/hero-video.tsx` — Balanced the fullscreen hero layout.
+- **Issues Encountered:** None.
+- **Resolution:** —
+- **QA Checklist Result:** ✅ Explicit QA PASS; `tsc`, lint, and build passed. No test script is defined. Browser checks at 1920×913, 1536×768, 1024×768, 1280×720, and 390×844 verified the frame stays inside the stage, cards remain on the artwork, there is no horizontal overflow, mobile layout is preserved, and the cue is visible.
+- **Next Steps:** Continue with the next approved video-hero scope — awaiting your approval.
+
+### Phase 3: Responsive 16:9 desktop scene
+
+- **Timestamp:** 2026-11-11 16:15:32 +08:00
+- **Mode:** Edit access yes · Terminal no
+- **Persona(s) Active:** 🧪 QA · 📝 Dev Logger
+- **Files Modified/Created:**
+  - `src/app/page.tsx` — Composed one desktop scene containing the sharp video, grade, and cards; preserved the under-lg layout.
+  - `src/app/_components/hero-video.tsx` — Corrected lg+ scene width to the lesser of stage width and the height-derived 16:9 width, centered and right-aligned.
+  - `src/app/_components/hero-stats.tsx` — Positioned cards by percentage within the scene and made them dodge within its bounds.
+- **Issues Encountered:** None reported for this phase.
+- **Resolution:** —
+- **QA Checklist Result:** ✅ Explicit QA PASS; `tsc`, lint, and build passed. Browser checks at 1075×560, 1920×913, 1536×768, 1280×720, 1024×768, and 390×844 confirmed scene/card bounds, cue visibility, and no horizontal overflow. Tests: n.a.
+- **Next Steps:** Continue with the next approved video-hero scope — awaiting your approval.
