@@ -29,13 +29,13 @@ const SERVICES = [
 
 export function AboutAndServices() {
   return (
-    <SectionShell id="about" labelledBy="about-heading" className="border-t border-white/5">
+    <SectionShell id="about" labelledBy="about-heading" className="border-t border-zinc-200">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
         <div>
           <Eyebrow>Who we are</Eyebrow>
           <h2 id="about-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl lg:text-[2.75rem]">
             People who care,{" "}
-            <span className="bg-linear-to-r from-blue-500 via-blue-400 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-800 via-blue-700 to-blue-800 bg-clip-text text-transparent">
               powered by AI.
             </span>
           </h2>
@@ -47,7 +47,7 @@ export function AboutAndServices() {
         </div>
         <ul className="grid content-end gap-3 sm:grid-cols-3 lg:gap-4">
           {BENEFITS.map((b) => (
-            <li key={b.title} className="border-l-2 border-amber-400/70 pl-4">
+            <li key={b.title} className="border-l-2 border-amber-500 pl-4">
               <h3 className="font-semibold">{b.title}</h3>
               <p className="mt-1 text-sm leading-6 text-(--hero-muted)">{b.body}</p>
             </li>
@@ -61,19 +61,19 @@ export function AboutAndServices() {
           {SERVICES.map((s) => (
             <li
               key={s.title}
-              className="flex flex-col rounded-2xl border border-blue-400/20 bg-blue-950/35 p-6"
+              className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-sm"
             >
-              <span className="grid size-11 place-items-center rounded-xl border border-blue-400/30 bg-blue-500/15 text-blue-300">
+              <span className="grid size-11 place-items-center rounded-xl border border-blue-200 bg-blue-50 text-blue-800">
                 <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5">
                   <path d={s.icon} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
               <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-1 text-sm font-medium text-blue-300">{s.outcome}</p>
+              <p className="mt-1 text-sm font-medium text-blue-800">{s.outcome}</p>
               <ul className="mt-4 space-y-2 text-sm text-(--hero-muted)">
                 {s.points.map((pt) => (
                   <li key={pt} className="flex gap-2.5">
-                    <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-3.5 shrink-0 text-amber-400">
+                    <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-3.5 shrink-0 text-amber-700">
                       <path d="m3.5 8.5 3 3 6-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     {pt}

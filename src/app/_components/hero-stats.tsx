@@ -115,15 +115,15 @@ export function HeroStats({ stats }: { stats: readonly HeroStat[] }) {
             className="will-change-transform"
           >
             <div
-              className="flex animate-float items-center gap-3 rounded-2xl border border-blue-400/25 bg-[#0F2356]/65 px-5 py-4 shadow-[0_12px_40px_rgb(0_0_0/0.35)] backdrop-blur-md motion-reduce:animate-none"
+              className="flex animate-float items-center gap-3 rounded-2xl border border-blue-400/25 bg-[#0F2356]/65 px-5 py-4 shadow-lg backdrop-blur-md motion-reduce:animate-none"
               style={{ animationDelay: `${i * -3}s` }}
             >
               <span aria-hidden="true" className="grid size-10 place-items-center rounded-xl border border-amber-400/30 bg-amber-400/15 text-lg text-amber-400">
                 {stat.icon}
               </span>
               <span className="flex flex-col">
-                <span className="text-xl font-semibold leading-6 tracking-[-0.02em] text-foreground">{stat.value}</span>
-                <span className="text-sm text-(--hero-muted)">{stat.label}</span>
+                <span className="text-xl font-semibold leading-6 tracking-[-0.02em] text-white">{stat.value}</span>
+                <span className="text-sm text-white/75">{stat.label}</span>
               </span>
             </div>
           </div>

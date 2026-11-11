@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #080d21;
-  --foreground: #f1f5ff;
-  --hero-border: #252e4a;
-  --hero-label: #8de5fa;
-  --hero-muted: #bfc9df;
-  --hero-subtle: #95a3c2;
+  --background: #fafafa;
+  --foreground: #18181b;
+  --hero-border: #e4e4e7;
+  --hero-label: #1d4ed8;
+  --hero-muted: #52525b;
+  --hero-subtle: #52525b;
 }
 
 @theme inline {
@@ -56,3 +56,208 @@ html {
   }
 }
 
+/* Screen 2 only: keep the dark hero and other light sections unchanged. */
+.screen-two-trust,
+.screen-two-problems {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.screen-two-ticker-window {
+  overflow: hidden;
+}
+
+.screen-two-ticker-track {
+  display: flex;
+  width: max-content;
+}
+
+.screen-two-ticker-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0.25rem 2rem 0.25rem 0;
+  list-style: none;
+}
+
+.screen-two-motion-note {
+  display: none;
+}
+
+.screen-two-ambient {
+  background: linear-gradient(125deg, var(--color-blue-50), var(--color-zinc-50) 70%);
+}
+
+.screen-two-card::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(145deg, var(--color-blue-50), transparent 70%);
+  opacity: 0;
+  content: "";
+}
+
+.screen-two-card[data-landed="true"] {
+  position: relative;
+  z-index: 1;
+  border-color: var(--color-blue-300);
+  box-shadow: 0 0 0 3px var(--color-blue-100), 0 8px 24px rgb(30 64 175 / 10%);
+}
+
+.screen-two-card:focus-within {
+  outline: 3px solid var(--color-blue-700);
+  outline-offset: 3px;
+}
+
+.screen-two-card-target {
+  position: relative;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-blue-200);
+  border-radius: 9999px;
+  background: var(--color-blue-50);
+  box-shadow: inset 0 0 0 5px white;
+}
+
+.screen-two-rocket-canvas {
+  position: absolute;
+  z-index: 10;
+  inset: -5rem -1.5rem;
+  pointer-events: none;
+  --rocket-shell-color: var(--color-white);
+  --rocket-nose-color: var(--color-red-500);
+  --rocket-trim-color: var(--color-zinc-300);
+  --rocket-rim-color: var(--color-zinc-200);
+  --rocket-window-color: var(--color-zinc-900);
+  --rocket-puff-color: var(--color-white);
+  --rocket-puff-emissive-color: var(--color-zinc-300);
+  --rocket-ambient-color: var(--color-white);
+  --rocket-key-light-color: var(--color-blue-400);
+  --rocket-burst-amber-color: var(--color-amber-400);
+  --rocket-burst-blue-color: var(--color-blue-400);
+  --rocket-burst-orange-color: var(--color-orange-500);
+  --rocket-flame-color: var(--color-orange-500);
+  --rocket-flame-core-color: var(--color-orange-50);
+}
+
+.screen-two-card-copy {
+  position: relative;
+  z-index: 20;
+  pointer-events: none;
+}
+
+@media (min-width: 64rem) {
+  .screen-two {
+    display: grid;
+    min-height: calc(100svh - var(--nav-h));
+    grid-template-rows: minmax(min-content, calc((100svh - var(--nav-h)) * 0.2)) minmax(min-content, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .screen-two-ticker-track {
+    animation: screen-two-ticker-scroll 40s linear infinite;
+  }
+
+  .screen-two-ticker[data-paused="true"] .screen-two-ticker-track {
+    animation-play-state: paused;
+  }
+
+  .screen-two-ambient {
+    animation: screen-two-background-settle 700ms ease-out both;
+  }
+
+  .screen-two-card {
+    transition: transform 200ms ease-out, border-color 200ms ease-out, box-shadow 200ms ease-out;
+  }
+
+  .screen-two-card[data-landed="true"] {
+    transform: scale(1.025) translateY(-5px);
+  }
+
+  .screen-two-card::before {
+    transition: opacity 200ms ease-out;
+  }
+}
+
+@media (hover: hover) {
+  .screen-two-card:hover {
+    border-color: var(--color-blue-200);
+    box-shadow: 0 1px 2px var(--color-zinc-200);
+  }
+
+  .screen-two-card[data-landed="true"]:hover {
+    border-color: var(--color-blue-300);
+    box-shadow: 0 0 0 3px var(--color-blue-100), 0 8px 24px rgb(30 64 175 / 10%);
+  }
+
+  .screen-two-card:hover::before {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .screen-two-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .screen-two-card[data-landed="true"]:hover {
+    transform: scale(1.025) translateY(-5px);
+  }
+}
+
+@media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+  .screen-two-card[data-landed="true"] {
+    transform: scale(1.05) translateY(-10px);
+  }
+}
+
+@media (min-width: 64rem) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .screen-two-card[data-landed="true"]:hover {
+    transform: scale(1.05) translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-two-ticker {
+    display: block;
+  }
+
+  .screen-two-ticker-track {
+    width: auto;
+  }
+
+  .screen-two-ticker-group {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding-right: 0;
+  }
+
+  .screen-two-ticker-clone,
+  .screen-two-ticker-toggle {
+    display: none;
+  }
+
+  .screen-two-motion-note {
+    display: block;
+    margin-top: 0.75rem;
+  }
+
+  .screen-two-card[data-landed="true"] {
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes screen-two-ticker-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes screen-two-background-settle {
+  from { transform: translateX(-2%); opacity: 0.4; }
+  to { transform: translateX(0); opacity: 1; }
+}

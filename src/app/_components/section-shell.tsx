@@ -22,8 +22,8 @@ export function SectionShell({ id, labelledBy, children, className = "" }: Secti
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">
-      <span aria-hidden="true" className="size-1.5 rounded-full bg-amber-400" />
+    <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-800">
+      <span aria-hidden="true" className="size-1.5 rounded-full bg-amber-500" />
       {children}
     </p>
   );

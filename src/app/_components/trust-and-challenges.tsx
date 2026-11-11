@@ -1,88 +1,89 @@
-import { Eyebrow, SectionShell } from "./section-shell";
+import { Eyebrow } from "./section-shell";
+import { RocketStage } from "./rocket-stage";
+import { TrustTicker } from "./trust-ticker";
 
-// Placeholder figures: replace with verified numbers before launch.
-const PROOF_METRICS = [
-  { value: "1,200+", label: "Agents placed with client teams" },
-  { value: "40%", label: "Faster average resolution" },
-  { value: "24/7", label: "Coverage across time zones" },
-  { value: "14 days", label: "Typical team launch" },
+const SAMPLE_LABELS = [
+  { kind: "Client", label: "Sample client 01" },
+  { kind: "Tool", label: "Sample CRM" },
+  { kind: "Client", label: "Sample client 02" },
+  { kind: "Tool", label: "Sample help desk" },
+  { kind: "Client", label: "Sample client 03" },
+  { kind: "Tool", label: "Sample workspace" },
 ] as const;
-
-// Placeholder: confirm these are platforms your teams actually support before launch.
-const PLATFORMS = ["Zendesk", "Salesforce", "HubSpot", "Microsoft 365", "Freshdesk", "Intercom"] as const;
 
 const PAIN_POINTS = [
   {
-    title: "Disconnected teams",
+    title: "Disconnected Teams",
     body: "Your outsourced agents work in a silo. Context gets lost between handoffs, and customers repeat themselves every time.",
     cost: "Lost context, frustrated customers",
-    icon: "M4 12h4m8 0h4M9 7l-2 5 2 5m6-10 2 5-2 5",
+    category: "Context lost at every handoff",
   },
   {
-    title: "Slow resolution times",
+    title: "Slow Resolution",
     body: "Tickets bounce between queues and tiers. Simple questions wait hours, and escalations wait days.",
     cost: "Churn you only notice later",
-    icon: "M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
+    category: "More queues. Less progress.",
   },
   {
-    title: "Manual data entry",
+    title: "Manual Data Entry",
     body: "Skilled people spend their shifts copying data between systems instead of solving problems for customers.",
     cost: "Errors, rework, and burnout",
-    icon: "M4 6h16M4 12h10M4 18h7m9-3-4 4-2-2",
+    category: "Busywork instead of better work",
   },
 ] as const;
 
 export function TrustAndChallenges() {
   return (
-    <SectionShell id="proof" labelledBy="problems-heading" className="border-t border-white/5">
-      <div className="rounded-3xl border border-blue-400/15 bg-blue-950/30 p-5 sm:p-6 tall:sm:p-7">
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-4">
-          {PROOF_METRICS.map((m) => (
-            <div key={m.label} className="flex flex-col border-l border-blue-400/25 pl-4">
-              <dt className="text-sm text-(--hero-subtle)">{m.label}</dt>
-              <dd className="order-first text-3xl font-semibold tracking-tight text-white tall:sm:text-4xl">{m.value}</dd>
-            </div>
-          ))}
-        </dl>
-        <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-4 tall:mt-6 tall:pt-5 sm:flex-row sm:items-center sm:gap-6">
-          <p className="shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-(--hero-subtle)">
-            Our teams work in
-          </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-base font-semibold tracking-tight text-white/55">
-            {PLATFORMS.map((p) => (
-              <li key={p}>{p}</li>
+    <section id="proof" aria-labelledby="problems-heading" className="screen-two border-t border-zinc-200">
+      <div className="screen-two-trust border-b border-zinc-200 bg-white">
+        <div className="mx-auto w-full max-w-7xl px-5 py-4 sm:px-8 lg:px-10">
+          <div className="flex flex-col gap-1 lg:flex-row lg:items-baseline lg:justify-between lg:gap-6">
+            <h2 className="text-sm font-semibold text-blue-900">Illustrative clients &amp; tools</h2>
+            <p id="trust-placeholder-note" className="max-w-prose text-xs leading-5 text-zinc-600">
+              These ticker labels are illustrative placeholders only; they do not represent actual client affiliations, tool endorsements, or compliance certifications.
+            </p>
+          </div>
+          <TrustTicker>
+            {[false, true].map((clone) => (
+              <ul
+                key={String(clone)}
+                aria-label={clone ? undefined : "Illustrative sample clients and tools"}
+                aria-hidden={clone ? true : undefined}
+                className={`screen-two-ticker-group${clone ? " screen-two-ticker-clone" : ""}`}
+              >
+                {SAMPLE_LABELS.map((sample) => (
+                  <li key={sample.label} className="flex shrink-0 items-center gap-3 whitespace-nowrap">
+                    <span className="rounded-full border border-blue-100 bg-blue-50 px-2 py-1 text-xs font-medium text-blue-800">
+                      {sample.kind}
+                    </span>
+                    <span className="text-base font-medium tracking-tight text-zinc-700">{sample.label}</span>
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ul>
+          </TrustTicker>
         </div>
       </div>
 
-      <div className="mt-[clamp(2rem,4svh,3.5rem)] grid gap-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-end lg:gap-12">
-        <div>
-          <Eyebrow>The problem</Eyebrow>
-          <h2 id="problems-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl tall:lg:text-[2.75rem]">
-            Outsourcing shouldn&apos;t feel like losing control.
-          </h2>
-        </div>
-        <p className="max-w-2xl text-base leading-7 text-(--hero-muted) sm:text-lg">
-          Most providers sell headcount. You end up managing gaps, chasing updates, and fixing
-          mistakes your customers already noticed. Sound familiar?
-        </p>
-      </div>
+      <div className="screen-two-problems relative isolate overflow-hidden bg-zinc-50">
+        <div aria-hidden="true" className="screen-two-ambient pointer-events-none absolute -inset-8 -z-10" />
+        <div className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-8">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-end lg:gap-12">
+            <div>
+              <Eyebrow>The problem</Eyebrow>
+              <h2 id="problems-heading" className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-zinc-900 sm:text-4xl tall:lg:text-5xl">
+                Traditional outsourcing adds headcount, not intelligence.
+              </h2>
+            </div>
+            <p className="max-w-prose text-base leading-7 text-zinc-600">
+              More people shouldn&apos;t mean more complexity. When teams, tools, and knowledge
+              stay disconnected, your customers feel the gaps.
+            </p>
+          </div>
 
-      <ul className="mt-6 grid gap-4 md:grid-cols-3 tall:mt-8">
-        {PAIN_POINTS.map((p) => (
-          <li key={p.title} className="flex flex-col rounded-2xl border border-white/10 bg-white/3 p-5 tall:p-6">
-            <span className="grid size-11 place-items-center rounded-xl border border-amber-400/30 bg-amber-400/10 text-amber-400">
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="size-5">
-                <path d={p.icon} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <h3 className="mt-4 text-lg font-semibold">{p.title}</h3>
-            <p className="mt-2 flex-1 text-sm leading-6 text-(--hero-muted)">{p.body}</p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-amber-300/90">{p.cost}</p>
-          </li>
-        ))}
-      </ul>
-    </SectionShell>
+          <RocketStage cards={PAIN_POINTS} />
+        </div>
+      </div>
+    </section>
   );
 }

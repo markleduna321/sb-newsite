@@ -40,19 +40,19 @@ const CASE_STUDIES = [
   },
 ] as const;
 
-const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-800";
 
 export default function CaseStudiesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-blue-500/15 bg-blue-950/30">
+      <header className="border-b border-blue-100 bg-white">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
-          <Link href="/" className={`font-semibold tracking-tight ${focusRing}`}>
+          <Link href="/" className={`font-semibold tracking-tight text-blue-900 ${focusRing}`}>
             Skybridge
           </Link>
           <Link
             href="/#contact"
-            className={`inline-flex min-h-10 items-center rounded-full bg-white px-5 text-sm font-semibold text-blue-950 ${focusRing}`}
+            className={`inline-flex min-h-10 items-center rounded-full bg-blue-800 px-5 text-sm font-semibold text-white hover:bg-blue-700 ${focusRing}`}
           >
             Contact us
           </Link>
@@ -60,7 +60,7 @@ export default function CaseStudiesPage() {
       </header>
 
       <main className="mx-auto w-full max-w-7xl px-5 py-14 sm:px-8 sm:py-20 lg:px-10">
-        <Link href="/" className={`text-sm text-(--hero-subtle) hover:text-white ${focusRing}`}>
+        <Link href="/" className={`text-sm text-blue-800 hover:text-blue-950 ${focusRing}`}>
           &larr; Back to home
         </Link>
         <h1 className="mt-6 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Case studies</h1>
@@ -74,17 +74,17 @@ export default function CaseStudiesPage() {
             <li key={c.industry}>
               <article
                 aria-labelledby={`case-${c.industry}`}
-                className="grid gap-8 rounded-3xl border border-blue-400/20 bg-blue-950/35 p-7 sm:p-9 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)]"
+                className="grid gap-8 rounded-3xl border border-blue-100 bg-white p-7 shadow-sm sm:p-9 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)]"
               >
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-400">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-800">
                     {c.industry} · Illustrative example
                   </p>
                   <h2 id={`case-${c.industry}`} className="mt-5">
                     <span className="block text-5xl font-semibold tracking-tight">{c.metric}</span>
                     <span className="mt-1 block text-base font-normal text-(--hero-muted)">{c.metricLabel}</span>
                   </h2>
-                  <p className="mt-5 inline-flex rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-300">
+                  <p className="mt-5 inline-flex rounded-full border border-amber-300 bg-amber-100 px-3 py-1 text-xs font-medium text-blue-900">
                     {c.service}
                   </p>
                 </div>
@@ -97,8 +97,8 @@ export default function CaseStudiesPage() {
                     <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-(--hero-subtle)">Approach</h3>
                     <p className="mt-1.5 leading-7">{c.approach}</p>
                   </div>
-                  <figure className="border-l-2 border-amber-400/70 pl-4">
-                    <blockquote className="text-lg leading-8 text-white">&ldquo;{c.quote}&rdquo;</blockquote>
+                  <figure className="border-l-2 border-amber-500 pl-4">
+                    <blockquote className="text-lg leading-8 text-blue-950">&ldquo;{c.quote}&rdquo;</blockquote>
                     <figcaption className="mt-2 text-sm text-(--hero-subtle)">{c.author}, sample client</figcaption>
                   </figure>
                 </div>

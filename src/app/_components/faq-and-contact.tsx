@@ -40,37 +40,37 @@ const faqSchema = {
 
 export function FaqAndContact() {
   return (
-    <SectionShell id="contact" labelledBy="contact-heading" className="border-t border-white/5">
+    <SectionShell id="contact" labelledBy="contact-heading" className="border-t border-zinc-200">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
       <div className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12">
-        <div className="relative isolate flex flex-col justify-center overflow-hidden rounded-3xl border border-blue-400/25 bg-blue-950/50 p-7 lg:order-last lg:p-9">
-          <div aria-hidden="true" className="absolute -right-24 -top-24 -z-10 size-72 rounded-full bg-blue-600/25 blur-3xl" />
+        <div className="relative isolate flex flex-col justify-center overflow-hidden rounded-3xl border border-blue-900 bg-blue-900 p-7 text-white lg:order-last lg:p-9">
+          <div aria-hidden="true" className="absolute -right-24 -top-24 -z-10 size-72 rounded-full bg-blue-700/50 blur-3xl" />
           <h2 id="contact-heading" className="text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
             Ready to build your team?
           </h2>
           {/* Placeholder: confirm the response-time promise before launch. */}
-          <p className="mt-4 text-base leading-7 text-(--hero-muted)">
+          <p className="mt-4 text-base leading-7 text-blue-50">
             Tell us what you need. We reply within one business day with a team plan and next steps.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Build my team")}`}
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               Start the conversation
             </a>
             <Link
               href="/case-studies"
-              className="inline-flex min-h-12 items-center rounded-full border border-blue-400/30 bg-blue-600/15 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-600/25 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="inline-flex min-h-12 items-center rounded-full border border-blue-200/50 bg-blue-800 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               See results
             </Link>
           </div>
-          <p className="mt-5 text-sm text-(--hero-subtle)">
-            Or email <a className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <p className="mt-5 text-sm text-blue-100">
+            Or email <a className="text-white underline decoration-white/60 underline-offset-4 hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
           </p>
         </div>
         <div>
@@ -78,12 +78,12 @@ export function FaqAndContact() {
           <h2 id="faq-heading" className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
             Questions buyers ask us first.
           </h2>
-          <div className="mt-6 divide-y divide-white/10 border-y border-white/10">
+          <div className="mt-6 divide-y divide-zinc-200 border-y border-zinc-200">
             {FAQS.map((f) => (
               <details key={f.q} className="group">
-                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3.5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3.5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 [&::-webkit-details-marker]:hidden">
                   {f.q}
-                  <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4 shrink-0 text-blue-400 transition-transform group-open:rotate-45 motion-reduce:transition-none">
+                  <svg aria-hidden="true" viewBox="0 0 16 16" className="size-4 shrink-0 text-blue-800 transition-transform group-open:rotate-45 motion-reduce:transition-none">
                     <path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
                   </svg>
                 </summary>
