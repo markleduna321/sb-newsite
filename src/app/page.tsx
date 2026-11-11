@@ -1,8 +1,12 @@
 import Link from "next/link";
+import { AboutAndServices } from "./_components/about-and-services";
+import { FaqAndContact } from "./_components/faq-and-contact";
 import { HeroStage } from "./_components/hero-stage";
 import { HeroStats } from "./_components/hero-stats";
 import { HeroVideo } from "./_components/hero-video";
+import { HowItWorks } from "./_components/how-it-works";
 import { SiteNav } from "./_components/site-nav";
+import { TrustAndChallenges } from "./_components/trust-and-challenges";
 
 // Placeholder claims: confirm each certification is actually held before launch.
 const CERTIFICATIONS = ["ISO/IEC 27001", "SOC 2 Type II", "HIPAA", "PCI DSS"] as const;
@@ -114,7 +118,7 @@ export default function Home() {
 
         <div className="flex h-14 w-full items-center justify-center bg-background compact:h-10">
           <Link
-            href="#about"
+            href="#proof"
             className="group flex items-center gap-3 rounded-full py-1 pl-1 pr-3 text-xs font-semibold uppercase tracking-[0.2em] text-(--hero-subtle) hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
           >
             <span className="grid size-8 place-items-center overflow-hidden rounded-full border border-(--hero-border) text-(--hero-label)             group-hover:border-(--hero-label)/60 compact:size-7 motion-reduce:border-(--hero-label)/70 motion-reduce:bg-(--hero-label)/10">
@@ -127,29 +131,14 @@ export default function Home() {
         </div>
       </section>
 
-      <main className="w-full flex-1 pb-16 sm:pb-20">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10">
-          <section
-            id="about"
-            aria-labelledby="about-heading"
-            className="grid gap-5 pt-5 sm:grid-cols-[1fr_2fr] sm:gap-10 sm:pt-6"
-          >
-            <h2
-              id="about-heading"
-              className="text-xs font-medium uppercase tracking-[0.18em] text-(--hero-label) sm:text-sm"
-            >
-              The beginning
-            </h2>
-            <p className="max-w-2xl text-base leading-7 text-(--hero-muted)">
-              This is your home page. Use it as a place to introduce your
-              project, share what you are building, or simply start with a
-              clean slate.
-            </p>
-          </section>
-        </div>
+      <main className="w-full flex-1">
+        <TrustAndChallenges />
+        <AboutAndServices />
+        <HowItWorks />
+        <FaqAndContact />
       </main>
 
-      <footer className="mx-auto w-full max-w-7xl px-5 pb-7 text-sm text-(--hero-subtle) sm:px-8 lg:px-10">
+      <footer className="mx-auto w-full max-w-7xl border-t border-white/5 px-5 py-7 text-sm text-(--hero-subtle) sm:px-8 lg:px-10">
         <p>Made for what comes next.</p>
       </footer>
     </div>
